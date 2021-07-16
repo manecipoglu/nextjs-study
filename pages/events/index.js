@@ -3,13 +3,15 @@ import { getAllEvents } from "../../dummy-data";
 import EventList from "../../components/event-list/EventList";
 import EventSearch from "../../components/event-search/EventSearch";
 
-export default function Events() {
-  const events = getAllEvents();
+export default function Events({ events }) {
+  // const events = getAllEvents();
   const router = useRouter();
 
   function onSearch(year, month) {
     router.push(`/events/${year}/${month}`);
   }
+
+  if (!events) return <h1>Loading...</h1>;
 
   return (
     <>
@@ -17,4 +19,14 @@ export default function Events() {
       <EventList events={events} />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const response = await fetch(
+    "https://crwn-clothing-15ca1-default-rtdb.firebaseio.com/events.json"
+  );
+  const data = await response.json();
+  const events = [...Object.values(data)];
+
+  return { props: { events } };
 }

@@ -1,15 +1,9 @@
-import { useRouter } from "next/router";
-import { getEventById } from "../../dummy-data";
-
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/ErrorAlert";
 
-export default function EventDetails() {
-  const router = useRouter();
-  const event = getEventById(router.query.eventId);
-
+export default function EventDetails({ event }) {
   if (!event)
     return (
       <ErrorAlert>
@@ -33,18 +27,32 @@ export default function EventDetails() {
   );
 }
 
+export async function getStaticProps(context) {
+  const eventId = context.params.eventId;
+
+  const response = await fetch(
+    "https://crwn-clothing-15ca1-default-rtdb.firebaseio.com/events.json"
+  );
+  const events = await response.json();
+  const event = events[eventId];
+
+  return {
+    props: { event },
+  };
+}
+
 export async function getStaticPaths() {
   const response = await fetch(
     "https://crwn-clothing-15ca1-default-rtdb.firebaseio.com/events.json"
   );
   const events = await response.json();
 
-  const params = Object.keys(events).map(event => ({
-    params: { pid: event },
+  const paths = Object.keys(events).map(key => ({
+    params: { eventId: key },
   }));
 
   return {
-    paths: params,
-    fallback: true,
+    paths,
+    fallback: false,
   };
 }

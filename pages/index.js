@@ -14,7 +14,10 @@ export async function getStaticProps() {
     "https://crwn-clothing-15ca1-default-rtdb.firebaseio.com/events.json"
   );
   const data = await response.json();
-  const featuredEvents = Object.values(data).filter(event => event.isFeatured);
+  const featuredEvents = Object.values(data).filter((event, idx) => {
+    event.id = Object.keys(data)[idx];
+    return event.isFeatured;
+  });
 
   return {
     props: {

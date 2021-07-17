@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
-import { getAllEvents } from "../../dummy-data";
 import EventList from "../../components/event-list/EventList";
 import EventSearch from "../../components/event-search/EventSearch";
 
 export default function Events({ events }) {
-  // const events = getAllEvents();
   const router = useRouter();
 
   function onSearch(year, month) {
@@ -28,5 +26,5 @@ export async function getStaticProps() {
   const data = await response.json();
   const events = [...Object.values(data)];
 
-  return { props: { events } };
+  return { props: { events }, revalidate: 60 };
 }

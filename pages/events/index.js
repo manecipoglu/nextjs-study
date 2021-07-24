@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import EventList from "../../components/event-list/EventList";
 import EventSearch from "../../components/event-search/EventSearch";
@@ -13,6 +14,10 @@ export default function Events({ events }) {
 
   return (
     <>
+      <Head>
+        <title>All Events</title>
+        <meta name="description" content="Find great events" />
+      </Head>
       <EventSearch onSearch={onSearch} />
       <EventList events={events} />
     </>

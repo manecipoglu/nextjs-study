@@ -1,3 +1,4 @@
+import Head from "next/head";
 import EventList from "../../components/event-list/EventList";
 import ResultsTitle from "../../components/results-title/ResultsTitle";
 import Button from "../../components/ui/Button";
@@ -34,6 +35,13 @@ export default function FilteredEvents(props) {
 
   return (
     <>
+      <Head>
+        <title>Filtered Events</title>
+        <meta
+          name="description"
+          content={`All events for ${numMonth}/${numYear}.`}
+        />
+      </Head>
       <ResultsTitle date={date} />
       <EventList events={filteredEvents} />
     </>

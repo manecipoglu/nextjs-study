@@ -1,9 +1,14 @@
+import Head from "next/head";
 import { getFeaturedEvents } from "../dummy-data";
 import EventList from "../components/event-list/EventList";
 
 export default function HomePage({ featuredEvents }) {
   return (
     <div>
+      <Head>
+        <title>NextJs Events</title>
+        <meta name="description" content="Find great events" />
+      </Head>
       <EventList events={featuredEvents} />
     </div>
   );

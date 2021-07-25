@@ -39,7 +39,7 @@ export default function FilteredEvents(props) {
         <title>Filtered Events</title>
         <meta
           name="description"
-          content={`All events for ${numMonth}/${numYear}.`}
+          content={`All events for ${props.date.month}/${props.date.year}.`}
         />
       </Head>
       <ResultsTitle date={date} />

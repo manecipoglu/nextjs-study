@@ -4,6 +4,8 @@ import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/ErrorAlert";
 
+import Comments from "../../components/input/comments";
+
 export default function EventDetails({ event }) {
   if (!event)
     return (
@@ -28,6 +30,7 @@ export default function EventDetails({ event }) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 }

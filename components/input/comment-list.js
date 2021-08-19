@@ -17,14 +17,15 @@ export default function CommentList({ items }) {
           By <address>Beca</address>
         </div>
       </li>
-      {items.map(item => (
-        <li key={item.id}>
-          <p>{item.text}</p>
-          <div>
-            By <address>{item.name}</address>
-          </div>
-        </li>
-      ))}
+      {items.length &&
+        items.map(item => (
+          <li key={item._id}>
+            <p>{item.text}</p>
+            <div>
+              By <address>{item.name}</address>
+            </div>
+          </li>
+        ))}
     </ul>
   );
 }

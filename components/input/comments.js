@@ -10,10 +10,11 @@ export default function Comments({ eventId }) {
 
   useEffect(() => {
     if (showComments) {
-      fetch("/api/comments" + eventId)
+      fetch("/api/comments/" + eventId)
         .then(res => res.json())
         .then(data => setComments(data.comments));
     }
+    console.log(comments);
   }, [showComments, eventId]);
 
   function addCommentHandler(commentData) {

@@ -14,7 +14,6 @@ export default function Comments({ eventId }) {
         .then(res => res.json())
         .then(data => setComments(data.comments));
     }
-    console.log(comments);
   }, [showComments, eventId]);
 
   function addCommentHandler(commentData) {

@@ -17,10 +17,12 @@ export default async function handler(req, res) {
     };
 
     const result = await db.collection("comments").insertOne(newComment);
+
+    newComment.id = result.insertedId;
   }
 
   if (req.method === "GET") {
-    const documents = db
+    const documents = await db
       .collection("comments")
       .find()
       .sort({ _id: -1 })

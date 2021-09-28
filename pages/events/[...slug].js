@@ -4,6 +4,8 @@ import ResultsTitle from "../../components/results-title/ResultsTitle";
 import Button from "../../components/ui/Button";
 import ErrorAlert from "../../components/ui/ErrorAlert";
 
+import { getFilteredEvents } from "../../helpers/api-util";
+
 export default function FilteredEvents(props) {
   if (props.hasError)
     return (

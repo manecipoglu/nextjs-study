@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     const userEmail = req.body.email;
 

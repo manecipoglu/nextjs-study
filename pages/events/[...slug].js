@@ -72,18 +72,9 @@ export async function getServerSideProps({ params }) {
       // }
     };
 
-  const response = await fetch(
-    "https://crwn-clothing-15ca1-default-rtdb.firebaseio.com/events.json"
-  );
-  const data = await response.json();
-  const allEvents = [...Object.values(data)];
-
-  const filteredEvents = allEvents.filter(event => {
-    const eventDate = new Date(event.date);
-    return (
-      eventDate.getFullYear() === numYear &&
-      eventDate.getMonth() === numMonth - 1
-    );
+  const filteredEvents = await getFilteredEvents({
+    year: numYear,
+    month: numMonth,
   });
 
   return {
